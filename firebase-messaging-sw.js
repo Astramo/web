@@ -14,12 +14,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const messaging = firebase.messaging();
-messaging.usePublicVapidKey('BNkCLYgkZRUGROlTcfsvsMt07WXZ24HVhobmv3ia9ZuauC56QOT5oHRvbvniSuD5pKoTYOSmVv0Ov5h2IGSan9k');
 
 messaging.onBackgroundMessage((message) => {
   var payload = message.notification;
-  console.log('[firebase-messaging-sw.js] Received background message ', message);
-
   var notificationTitle = payload.title;
   var notificationOptions = {
     body: payload.body,
@@ -28,22 +25,14 @@ messaging.onBackgroundMessage((message) => {
     data: message.data.link,
   };
 
-  
-  console.log("strated sending msg" + notificationOptions);
   return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
 
 var onClick = function (event) {
-  console.log('received click func');
-  console.log(event);
-  // بستن اعلان
   event.notification.close();
-  // دریافت دادههای مربوط به اعلان پوش
   const data = event.notification.data;
-  // چک کردن اینکه000000000 آیا دادهها شامل یک لینک هستند یا خیر
   if (data) {
-    // باز کردن لینک در یک تب جدید
     event.waitUntil(clients.openWindow(data));
   }
 }
