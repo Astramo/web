@@ -35,7 +35,8 @@
 
     <script>
         // The value below is injected by flutter build, do not touch.
-        const serviceWorkerVersion = "276465211";
+        const serviceWorkerVersion = "3633989065";
+
 
 
     </script>
@@ -87,24 +88,20 @@
             margin: auto;
         }
 
+
     </style>
 </head>
 
 <body>
-<div class="loader"></div> 
+<div class="loader"></div>
 <script>
         if ('serviceWorker' in navigator) {
             // Service workers are supported. Use them.
             window.addEventListener('load', function () {
-                // ADD THIS LINE
-                // Wait for registration to finish before dropping the <script> tag.
-                // Otherwise, the browser will load the script multiple times,
-                // potentially different versions.
-                var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
-
-                //  ...
+                navigator.serviceWorker.register('flutter_service_worker.js?v=' + serviceWorkerVersion);
             });
         }
+
 
 
 </script>
@@ -127,6 +124,7 @@
                 }
             });
         });
+
 
 
 </script>
