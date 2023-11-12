@@ -35,7 +35,7 @@
 
     <script>
         // The value below is injected by flutter build, do not touch.
-        const serviceWorkerVersion = "3633989065";
+        const serviceWorkerVersion = "920157681";
 
 
 
@@ -98,6 +98,7 @@
         if ('serviceWorker' in navigator) {
             // Service workers are supported. Use them.
             window.addEventListener('load', function () {
+                navigator.serviceWorker.register('firebase-messaging-sw.js');
                 navigator.serviceWorker.register('flutter_service_worker.js?v=' + serviceWorkerVersion);
             });
         }
